@@ -1,0 +1,66 @@
+1. Objective of Day 1
+Set up Jenkins using Docker, unlock Jenkins, install recommended plugins, create the first admin
+user, and run the first freestyle job to verify that Jenkins is functioning correctly.
+
+
+2. Prerequisites
+- Docker Desktop installed (Windows/macOS) OR Docker Engine (Linux).
+- Internet connection to download Jenkins image and plugins.
+
+
+3. Step-by-Step Jenkins Setup Using Docker
+Run the following command to start Jenkins in Docker:
+Command:
+docker run -d --name jenkins-master -p 8080:8080 -p 50000:50000 -v
+jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+Explanation:
+- -d: Run container in background.
+- --name: Name of container.
+- -p: Maps ports for UI and agents.
+- -v: Persistent Jenkins home directory.
+- jenkins/jenkins:lts: Official Jenkins LTS image.
+
+
+4. Access Jenkins Web Interface
+Open your browser and go to:
+http://localhost:8080
+You will see the 'Unlock Jenkins' screen.
+
+
+5. Get Initial Admin Password
+Run:
+docker exec -it jenkins-master cat /var/jenkins_home/secrets/initialAdminPassword
+Copy the password and paste it into the unlock screen.
+
+
+6. Install Suggested Plugins
+Choose:
+'Install suggested plugins'
+
+
+7. Create First Admin User
+Fill in Username, Password, Full Name, Email ® then click Save and Continue.
+
+
+8. Confirm Jenkins URL
+Keep the default Jenkins URL and click Save and Finish, then Start using Jenkins.
+
+
+9. Create First Freestyle Job
+1. New Item ® Freestyle project.
+2. Build ® Execute Shell:
+echo "Hello from Jenkins - Day 1 setup complete!"
+3. Save ® Build Now ® Check Console Output.
+
+
+10. Expected Output
+Hello from Jenkins - Day 1 setup complete!
+Finished: SUCCESS
+Jenkins installs essential plugins automatically.
+
+
+11. Day 1 Completion Summary
+4 Jenkins installed
+4 Plugins installed
+4 Admin user created
+4 First job executed successfully
